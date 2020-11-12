@@ -1,0 +1,17 @@
+xadd myqueue * key value1
+xadd myqueue * key value2
+xadd myqueue * key value3
+xadd myqueue * key value4
+xadd myqueue * key value5
+xlen myqueue
+xrange myqueue - +
+xgroup create myqueue group1 0-0
+xgroup create myqueue group2 0-0
+xinfo stream myqueue
+xinfo groups myqueue
+xreadgroup group group1 consumer1 count 4 streams myqueue >
+xreadgroup group group1 consumer2 count 4 streams myqueue >
+xreadgroup group group2 consumer3 count 4 streams myqueue >
+xreadgroup group group2 consumer4 count 4 streams myqueue >
+
+
